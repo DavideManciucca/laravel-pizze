@@ -9,7 +9,10 @@
         @method('PUT')
         <div class="mb-3">
           <label  class="form-label">New name</label>
-          <input type="text" name="nome" value="{{old($pizza->nome)}}" class="form-control" id="nome" >
+          <input type="text" name="nome" value="{{old($pizza->nome)}}" class="form-control" id="nome"
+          >
+
+
         </div>
 
         <label for="quantity">Scegli un nuovo prezzo (between 1 and 100):</label>
@@ -67,6 +70,7 @@
               </textarea>
             </div>
         <button type="submit" class="btn btn-primary">Submit</button>
+        <a class="btn btn-primary" href="{{route('admin.pizzas.index')}}"><- Go back</a>
       </form>
 </div>
 

@@ -3,6 +3,17 @@
 @section('content')
 
 <div class="container">
+
+    @if ($errors->any)
+    <div >
+        <ul >
+            @foreach ($errors->all() as $error )
+                <li  class="alert alert-danger">{{$error}}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
     <h1>Ciao {{Auth::user()->name}} crea la tua nuova pizza!</h1>
     <form action="{{route('admin.pizzas.store')}}" method="POST">
         @csrf
@@ -10,7 +21,13 @@
         <div class="mb-3">
           <label  class="form-label">New name</label>
           <input type="text" name="nome" value="{{old('nome')}}" class="form-control" id="nome" >
-        </div>
+        </div
+        @error('nome')
+              is-invalid
+          @enderror>
+        @error('nome')
+             <p style="color: red">{{$message}}</p>
+          @enderror
 
         <label for="quantity">Scegli un nuovo prezzo (between 1 and 100):</label>
         <input type="number" id="prezzo" value="{{old('prezzo')}}" name="prezzo" min="1" max="100" step="0.1">
@@ -55,11 +72,20 @@
             <div class="mb-3">
               <label  class="form-label">New ingredients</label>
 
-            <textarea name="ingredienti" id="ingredienti" cols="90" rows="5" value="{{old('ingredienti')}}">
+            <textarea name="ingredienti" id="ingredienti" cols="90" rows="5" value="{{old('ingredienti')}}"
 
+            @error('ingredienti')
+            is-invalid
+        @enderror
+            >
               </textarea>
+              @error('ingredienti')
+             <p style="color: red">{{$message}}</p>
+
+            @enderror
             </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
+
 </div>
 @endsection

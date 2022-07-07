@@ -39,6 +39,22 @@ class PizzaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "nome"=>"required|min:3|max:255",
+            "ingredienti"=>"required|min:3|max:255",
+        ],
+        [
+            "nome.required"=>"E' necessario inserire il nome!",
+            "nome.min"=>"Il nome deve essere lungo almeno :min caratteri",
+            "nome.max"=>"Il nome non deve essere più lungo di :max caratteri",
+            "ingredienti.required"=>"E' necessario inserire gli ingredienti",
+            "ingredienti.min"=>"Gli ingredienti devono essere lunghi almeno :min caratteri",
+            "ingredienti.max"=>"Gli ingredienti devono essere lunghi meno di :max caratteri",
+
+
+        ]);
+
+
         $data = $request->all();
         $new_pizza = new Pizza();
         $data['slug'] = Pizza::genSlug($data['nome']);
