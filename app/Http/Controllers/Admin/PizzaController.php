@@ -17,6 +17,7 @@ class PizzaController extends Controller
     public function index()
     {
         $pizzas = Pizza::all();
+
         return view('admin.pizzas.index',compact('pizzas'));
     }
 
@@ -91,8 +92,9 @@ class PizzaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Pizza $pizza)
     {
-        //
+        $pizza->delete();
+        return redirect()->route('admin.pizzas.index');
     }
 }

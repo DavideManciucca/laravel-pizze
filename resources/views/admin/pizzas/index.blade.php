@@ -28,9 +28,14 @@
                 <td>
                     <a class="btn btn-primary" href="{{route('admin.pizzas.show', $pizza)}}">SHOW</a>
                     <a class="btn btn-warning" href="{{route('admin.pizzas.edit', $pizza)}}">EDIT</a>
+                    <form onsubmit="return confirm('vuoi eliminare il campo?')" class="d-inline" action="{{route('admin.pizzas.destroy', $pizza)}}" method="POST">
+                        @csrf @method('DELETE')
+                        <button type="submit" class="btn btn-danger" >DELETE</a>
+                        </form>
 
 
-                    DELETE
+
+
                 </td>
 
             </tr>
