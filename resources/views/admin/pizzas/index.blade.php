@@ -21,7 +21,7 @@
                 <td>{{$pizza->prezzo}} &euro;</td>
                 <td>
                     <a class="btn btn-primary" href="{{route('admin.pizzas.show', $pizza)}}">SHOW</a>
-                    <a class="btn btn-warnig" href="{{route('admin.pizzas.edit', $pizza)}}">EDIT</a>
+                    <a class="btn btn-warning" href="{{route('admin.pizzas.edit', $pizza)}}">EDIT</a>
 
 
                     DELETE

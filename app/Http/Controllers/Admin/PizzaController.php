@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Pizza;
 
 class PizzaController extends Controller
@@ -60,7 +61,8 @@ class PizzaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pizza = Pizza::find($id);
+        return view('admin.pizzas.edit', compact('pizza'));
     }
 
     /**
@@ -70,9 +72,12 @@ class PizzaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Pizza $pizza)
     {
-        //
+        $data = $request->all();
+        $data['slug']=Pizza::genSlug($data['nome']);
+        $pizza->update($data);
+        return redirect()->route('admin.pizzas.show', $pizza);
     }
 
     /**
