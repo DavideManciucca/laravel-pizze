@@ -2,6 +2,12 @@
 
 @section('content')
     <div class="container">
+        <div class="d-flex">
+            <h1>Lista delle pizze</h1>
+            <div style="margin-left: 20px"> </div>
+            <a class="btn btn-success" href="{{route('admin.pizzas.create')}}">CREATE</a>
+
+        </div>
 
         <table class="table">
             <thead>
